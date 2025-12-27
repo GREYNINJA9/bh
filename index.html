@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/audio-player.css">
+    
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+    <!-- Inline data-URI favicon to avoid requesting /favicon.ico (fallback for dev) -->
+    <link rel="icon" type="image/png"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NgYGD4DwABBAEAf49ZxQAAAABJRU5ErkJggg==">
+    <meta name="theme-color" content="#ffe6f2">
+    <meta name="description"
+        content="A romantic, interactive love story with gentle animations, music, and progress indicators.">
+    <!-- Optional: preload background music to help browsers get the audio early -->
+    <link rel="preload" href="assets/music/background.mp3" as="audio">
+    <link rel="preload" href="assets/music/background2.mp3" as="audio">
+    <link rel="preload" href="assets/music/background3.mp3" as="audio">
+</head>
+
+<body class="hero-locked">
+    <div class="cloud-background">
+        <div class="cloud-layer"></div>
+        <div class="cloud-layer"></div>
+        <div class="cloud-layer"></div>
+    </div>
+    <!-- Skip link for keyboard users -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <section class="hero" id="hero" aria-label="Intro">
+        <div class="hero-inner">
+            <h1 class="hero-title">Are you ready to see yourself through my eyes?</h1>
+            <button class="hero-cta" id="hero-cta" type="button">See My World</button>
+        </div>
+    </section>
+    <main id="main-content" class="container" role="main" aria-label="Main story content">
+        <!-- Existing story sections: each story section contains a .story-card wrapper used by the typewriter -->
+        <div class="scroll-stack-scroller">
+            <div class="scroll-stack-inner">
+                <div class="story-section" id="section-1" role="region"
+                    aria-labelledby="section-1-title">
+                    <div class="story-card">
+                        <h1 id="section-1-title">The First Notice</h1>
+                        <p>The first time I ever noticed you was when you were decorating the 7th "A" class board. I
+                            didn't know
+                            you then, but a little later I heard Principal ma'am praising your work during lunch. That
+                            was the
+                            moment you quietly entered my life. Somehow, after that day, I picked up sketching again —
+                            maybe
+                            because something about you inspired me.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-1" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-2" role="region"
+                    aria-labelledby="section-2-title">
+                    <div class="story-card">
+                        <h1 id="section-2-title">Table Tennis Discovery</h1>
+                        <p>Then I found out you played table tennis. I didn't even know how to hold the racket properly,
+                            but I
+                            still went to play. I practiced for days by hitting the ball against the wall, just so I
+                            wouldn't
+                            embarrass myself when I finally got a chance to play with you.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-2" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-3" role="region"
+                    aria-labelledby="section-3-title">
+                    <div class="story-card">
+                        <h1 id="section-3-title">First Match Memory</h1>
+                        <p>I still remember that day — you in a blue t-shirt, your brother next to you while you taught
+                            him how
+                            to play. That was the first time I played a proper match with you. And the one thing that
+                            stuck with
+                            me was how you lifted the ball so calmly when it landed near the white edge line. I don't
+                            know why,
+                            but that tiny moment stayed with me.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-4" role="region"
+                    aria-labelledby="section-4-title">
+                    <div class="story-card">
+                        <h1 id="section-4-title">The New Bus</h1>
+                        <p>Then came the new 7-number bus. It was always crowded because it was fast. When Singla ma'am
+                            divided
+                            the buses, all I secretly wished was to be in the same one as you. At that age, I didn't
+                            know
+                            anything about "love," "crush," or "attraction." I just wanted to be around you. Even if we
+                            sat far
+                            apart — girls on the left, boys on the right — it still felt special.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-4" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-5" role="region"
+                    aria-labelledby="section-5-title">
+                    <div class="story-card">
+                        <h1 id="section-5-title">Small Gestures</h1>
+                        <p>Once, I remember my bag's shoulder strap was hanging and bothering you. I immediately lifted
+                            it and
+                            rolled it up so it wouldn't happen again. After that, I always kept my bag in the same
+                            position. It
+                            sounds silly now, but it mattered so much then.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-1" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-6" role="region"
+                    aria-labelledby="section-6-title">
+                    <div class="story-card">
+                        <h1 id="section-6-title">Bus Route Changes</h1>
+                        <p>And I still remember the bus route changing — going from "1 Rupya Chowk" and then "Jhajhar
+                            Chungi."
+                            You usually sat in the last rows, and I would look back carefully just to see you one last
+                            time
+                            before getting off. When the bus turned left toward the junior wing, I always slowed down,
+                            hoping to
+                            catch one more glimpse of you as the bus disappeared.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-2" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-7" role="region"
+                    aria-labelledby="section-7-title">
+                    <div class="story-card">
+                        <h1 id="section-7-title">Timings and COVID</h1>
+                        <p>Then your timings changed when you went to 10th early for board prep. After that, COVID
+                            began, and
+                            everything shifted online. Most of your 10th and my 9th passed behind a screen.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-8" role="region"
+                    aria-labelledby="section-8-title">
+                    <div class="story-card">
+                        <h1 id="section-8-title">School Reopening</h1>
+                        <p>When school reopened briefly, I saw you again — and I also used to write some of your class
+                            papers in
+                            10th (Maths) and 11th (Accountancy). You used to prepare our papers, and I guess writing
+                            yours made
+                            me feel connected in some strange way.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-4" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-9" role="region"
+                    aria-labelledby="section-9-title">
+                    <div class="story-card">
+                        <h1 id="section-9-title">Hidden Hints</h1>
+                        <p>At some point I sketched our teachers and left a small signature in the drawing that hid a
+                            hint — my
+                            initial. I chose moments to pass by your class, to be present. I don't know how I learned to
+                            do
+                            things that made me seem confident; I only know that I did them for you.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-1" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-10" role="region"
+                    aria-labelledby="section-10-title">
+                    <div class="story-card">
+                        <h1 id="section-10-title">Teacher Assistants</h1>
+                        <p>Later, when we were teacher assistants, I chose your section on purpose. That moment reminded
+                            me of
+                            the previous year on Teacher's Day — I still remember you sitting on the last bench near the
+                            gate,
+                            and me sitting in the same row on the second bench. Back then, I even asked questions in
+                            class just
+                            to look sincere and involved. I don't know where that confidence came from — maybe I just
+                            wanted you
+                            to notice that I wasn't there to disturb anyone, only to learn.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-2" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-11" role="region"
+                    aria-labelledby="section-11-title">
+                    <div class="story-card">
+                        <h1 id="section-11-title">Teaching Day</h1>
+                        <p>And on the day we were teacher assistants, you were the one teaching. I wasn't even paying
+                            proper
+                            attention to the lesson — I was busy making sure the students stayed quiet so no one would
+                            disturb
+                            you while you were teaching.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-12" role="region"
+                    aria-labelledby="section-12-title">
+                    <div class="story-card">
+                        <h1 id="section-12-title">Diwali Memories</h1>
+                        <p>Diwali in your 11th was unforgettable. You were anchoring, and I was on stage for "Hum Katha
+                            Sunate."
+                            I remember being completely stunned watching you — your confidence, your curly hairstyle,
+                            everything. After the event, I kept glancing toward your class from the gate, hoping to see
+                            you
+                            again. One of my friends even joked, "Kisko nihaar raha hai?" I somehow distracted him and
+                            pretended
+                            it was nothing.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-4" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-13" role="region"
+                    aria-labelledby="section-13-title">
+                    <div class="story-card">
+                        <h1 id="section-13-title">Saved Photo</h1>
+                        <p>I found that photo of yours from Sikha ma'am's status. I saved it quietly. Whenever I felt
+                            low,
+                            looking at it gave me some strange confidence. That was probably the first time I realized —
+                            maybe I
+                            really liked you. But because of how I was raised, I thought having such feelings before
+                            marriage
+                            was almost a "sin." So I kept suppressing everything inside me.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-1" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-14" role="region"
+                    aria-labelledby="section-14-title">
+                    <div class="story-card">
+                        <h1 id="section-14-title">Teacher's Day Sketches</h1>
+                        <p>When you were in 12th and I was in 11th, on Teacher's Day, I made sketches of teachers and
+                            purposely
+                            went to show Sikha ma'am, hoping you'd see my work too. My signature even had a hidden "B"
+                            in it —
+                            but I don't think you noticed.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-2" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-15" role="region"
+                    aria-labelledby="section-15-title">
+                    <div class="story-card">
+                        <h1 id="section-15-title">School Ends, College Begins</h1>
+                        <p>Then you left school after 12th. I rarely came to class in my own 12th year, spoke very
+                            little, and
+                            stayed mostly quiet unless I had a doubt. School ended, and then college began.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-16" role="region"
+                    aria-labelledby="section-16-title">
+                    <div class="story-card">
+                        <h1 id="section-16-title">LinkedIn Connection</h1>
+                        <p>When I made my LinkedIn account, I didn't know how it worked. I added people randomly, but
+                            soon I
+                            searched your name and saw you were in Hansraj. That made me send connection requests to
+                            students
+                            from Hansraj — I don't know why, maybe to feel closer to your world.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-4" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-17" role="region"
+                    aria-labelledby="section-17-title">
+                    <div class="story-card">
+                        <h1 id="section-17-title">Finally Connected</h1>
+                        <p>After around one and a half months, I finally sent you a connection request. You didn't
+                            accept it at
+                            first. I removed it. Waited. Tried again with a note. After about three months — on 27th
+                            December
+                            2024 — you accepted. I still remember the exact date.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-1" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-18" role="region"
+                    aria-labelledby="section-18-title">
+                    <div class="story-card">
+                        <h1 id="section-18-title">First Messages</h1>
+                        <p>I felt extremely happy, but then I messed up a bit. I wished you Happy New Year exactly at
+                            12:00 AM —
+                            too eager. Then two days later I asked, "How did you celebrate?" which probably made me seem
+                            weird
+                            again.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-2" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-19" role="region"
+                    aria-labelledby="section-19-title">
+                    <div class="story-card">
+                        <h1 id="section-19-title">Reflections</h1>
+                        <p>Back in 12th, I had even asked for your Maths book randomly just to talk — another silly
+                            thing.
+                            Looking back, I realize how many mistakes I made because I kept suppressing everything. I
+                            didn't
+                            know how to handle emotions back then. I did things without thinking, and I understand how
+                            strange
+                            some of them might have seemed. I'm not trying to justify anything — just being honest.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-20" role="region"
+                    aria-labelledby="section-20-title">
+                    <div class="story-card">
+                        <h1 id="section-20-title">Precious Memories</h1>
+                        <p>These memories are precious to me, even if they weren't perfect. I don't want to replace them
+                            or
+                            forget them. I know saying all this again might be emotional — maybe even foolish — but I
+                            needed to
+                            share it.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-4" aria-hidden="true"></div>
+                </div>
+
+                <div class="story-section" id="section-21" role="region"
+                    aria-labelledby="section-21-title">
+                    <div class="story-card">
+                        <h1 id="section-21-title">The End... For Now</h1>
+                        <p>That's all. If you want to hear more someday, I will tell you.</p>
+                    </div>
+                    <div class="sketch-bg sketch-bg-1" aria-hidden="true"></div>
+                </div>
+
+                <div class="scroll-stack-end"></div>
+            </div>
+        </div>
+        <div class="final-section" id="final-section" role="region" aria-labelledby="final-section-title">
+            <div class="story-card">
+                <h1 id="final-section-title">Will you give me a chance?</h1>
+                <div class="buttons">
+                    <button class="yes-btn" aria-label="Answer yes">YES</button>
+                    <button class="no-btn" aria-label="Answer no">NO</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Audio Player -->
+    <div class="audio-player" id="audio-player" role="region" aria-label="Background music player">
+        <div class="player-main">
+            <div class="song-info">
+                <span class="song-title">Background Music</span>
+                <div class="heart-beat"></div>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn" id="play-pause" aria-label="Play or pause background music"
+                    aria-pressed="false">▶️</button>
+                <div class="volume-control">
+                    <input type="range" id="volume-slider" min="0" max="100" value="50" aria-label="Volume slider">
+                </div>
+            </div>
+        </div>
+        <div class="player-overlay" id="player-overlay">
+            <span>Click anywhere to start the music</span>
+        </div>
+    </div>
+
+    <!-- Core Modules & Enhancements -->
+    <!-- Load critical dependencies first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Base initialization -->
+    <script src="js/preload.js"></script>
+    <script src="js/audioController.js"></script>
+    
+    <!-- Scroll and animation modules -->
+    <script src="js/scrollFloat.js"></script>
+    <script src="js/scrollAnimations.js"></script>
+    <script src="js/emotionalBackground.js"></script>
+    <script src="js/emotionalTextStyling.js"></script>
+    <!-- <script src="js/parallax.js"></script> -->
+    <script src="js/progress.js"></script>
+    <script src="js/fuzzyText.js"></script>
+    <script src="js/decryptedText.js"></script>
+    <script src="js/interactiveFlow.js"></script>
+    <script src="js/interactions.js"></script>
+    
+    <!-- Smooth scrolling -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+    <script>
+        
+
+        // Add AOS attributes to all story sections
+        document.querySelectorAll('.story-section').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+
+        /*
+          HERO: a gentle permission moment.
+          - The page starts "closed" (no scrolling) so the visitor can breathe.
+          - The invitation fades in softly, then the button.
+          - On consent (CTA click): the hero dissolves, music becomes slightly clearer, the story unlocks.
+        */
+        // Listen for preloader completion
+        window.addEventListener('preloaderHidden', () => {
+            console.log('Preloader loading sequence completed');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Improved scroll reset with multiple fallbacks
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            requestAnimationFrame(() => {
+                window.scrollTo(0, 0);
+            });
+            
+            // Lenis integration for smooth scroll
+            if (typeof window.lenis !== 'undefined' && window.lenis) {
+                window.lenis.scrollTo(0, { immediate: true });
+            }
+
+            const hero = document.getElementById('hero');
+            const heroTitle = hero?.querySelector('.hero-title');
+            const heroCta = document.getElementById('hero-cta');
+            const main = document.getElementById('main-content');
+            const firstSection = document.getElementById('section-1');
+            
+            // Module initialization status tracker
+            window.moduleInitStatus = {
+                emotionalBackground: false,
+                emotionalTextStyling: false,
+                scrollAnimations: false,
+                scrollFloat: false,
+                interactions: false
+            };
+
+            if (window.gsap && heroTitle && heroCta) {
+                const intro = gsap.timeline({ defaults: { ease: 'power2.out' } });
+                intro
+                    .to(heroTitle, { opacity: 1, y: 0, duration: 0.9 })
+                    .to(heroCta, { opacity: 1, y: 0, duration: 0.7 }, '-=0.35');
+            } else {
+                if (heroTitle) {
+                    heroTitle.style.opacity = '1';
+                    heroTitle.style.transform = 'translateY(0)';
+                }
+                if (heroCta) {
+                    heroCta.style.opacity = '1';
+                    heroCta.style.transform = 'translateY(0)';
+                }
+            }
+
+            if (!heroCta) return;
+            
+            // Failsafe timeout: automatically unlock content if hero init fails
+            const failsafeTimeout = setTimeout(() => {
+                if (document.body.classList.contains('hero-locked')) {
+                    console.warn('Failsafe activated: Hero unlock did not complete within timeout. Forcing content display...');
+                    document.body.classList.remove('hero-locked');
+                    if (main) {
+                        main.style.opacity = '1';
+                        main.style.pointerEvents = 'auto';
+                    }
+                    // Initialize all modules as fallback
+                    initializeAllModules();
+                }
+            }, 6000); // 6 second timeout
+
+            heroCta.addEventListener('click', () => {
+                clearTimeout(failsafeTimeout); // Cancel failsafe if user clicks CTA
+                
+                const ac = window.audioController;
+                if (ac?.currentAudio) {
+                    if (!ac.isPlaying && typeof ac.playMusic === 'function') {
+                        ac.playMusic();
+                    }
+                    const nextVol = Math.min(0.38, (ac.currentAudio.volume || 0) + 0.12);
+                    ac.currentAudio.volume = nextVol;
+                    if (typeof ac.setVolume === 'function') {
+                        ac.setVolume(Math.round(nextVol * 100));
+                    }
+                }
+
+                const unlock = () => {
+                    document.body.classList.remove('hero-locked');
+                    if (main) {
+                        main.style.opacity = '';
+                        main.style.pointerEvents = '';
+                    }
+                    requestAnimationFrame(() => {
+                        if (firstSection) {
+                            firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        } else if (main) {
+                            main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        // Initialize all modules after hero unlock
+                        initializeAllModules();
+                    });
+                };
+
+                if (window.gsap && hero) {
+                    const exit = gsap.timeline({
+                        defaults: { ease: 'power2.out' },
+                        onComplete: () => {
+                            hero.style.display = 'none';
+                        }
+                    });
+                    exit
+                        .to(hero.querySelector('.hero-inner'), { opacity: 0, y: -8, duration: 0.7 })
+                        .to(hero, { opacity: 0, duration: 0.55 }, '-=0.35')
+                        .add(() => unlock(), '-=0.35')
+                        .fromTo(main, { opacity: 0 }, { opacity: 1, duration: 0.8 }, '-=0.2');
+                } else {
+                    if (hero) hero.style.display = 'none';
+                    unlock();
+                }
+            }, { once: true });
+        });
+
+        // Helper function to initialize all modules
+        function initializeAllModules() {
+            console.log('Starting module initialization sequence...');
+            
+            // Check if GSAP is ready
+            if (!window.gsap || !window.ScrollTrigger) {
+                console.error('GSAP or ScrollTrigger not available. Waiting for dependencies...');
+                let attempts = 0;
+                const waitInterval = setInterval(() => {
+                    if (window.gsap && window.ScrollTrigger) {
+                        clearInterval(waitInterval);
+                        proceedWithInit();
+                    } else if (attempts++ > 20) {
+                        clearInterval(waitInterval);
+                        console.error('GSAP/ScrollTrigger failed to load after timeout');
+                    }
+                }, 100);
+                return;
+            }
+            
+            proceedWithInit();
+            
+            function proceedWithInit() {
+                try {
+                    // 1. Initialize emotional background
+                    if (typeof window.initEmotionalBackground === 'function' && !window.initEmotionalBackground_done) {
+                        window.initEmotionalBackground();
+                        window.moduleInitStatus.emotionalBackground = true;
+                        console.log('✓ emotionalBackground initialized');
+                    }
+                } catch (e) {
+                    console.error('emotionalBackground initialization failed:', e);
+                }
+                
+                try {
+                    // 2. Initialize emotional text styling
+                    if (typeof window.initEmotionalTextStyling === 'function' && !window.initEmotionalTextStyling_done) {
+                        window.initEmotionalTextStyling();
+                        window.moduleInitStatus.emotionalTextStyling = true;
+                        console.log('✓ emotionalTextStyling initialized');
+                    }
+                } catch (e) {
+                    console.error('emotionalTextStyling initialization failed:', e);
+                }
+                
+                try {
+                    // 3. Initialize scroll animations
+                    if (typeof window.initScrollAnimations === 'function' && !window.initScrollAnimations_done) {
+                        window.initScrollAnimations();
+                        window.moduleInitStatus.scrollAnimations = true;
+                        console.log('✓ scrollAnimations initialized');
+                    }
+                } catch (e) {
+                    console.error('scrollAnimations initialization failed:', e);
+                }
+                
+                try {
+                    // 4. Initialize ScrollFloat for headings
+                    if (window.ScrollFloat) {
+                        const headings = document.querySelectorAll('.story-section h1, .final-section h1');
+                        headings.forEach((heading) => {
+                            if (!heading.dataset.scrollFloatApplied) {
+                                new ScrollFloat(heading);
+                                heading.dataset.scrollFloatApplied = 'true';
+                            }
+                        });
+                        window.moduleInitStatus.scrollFloat = true;
+                        console.log('✓ ScrollFloat initialized for', headings.length, 'headings');
+                    }
+                } catch (e) {
+                    console.error('ScrollFloat initialization failed:', e);
+                }
+                
+                try {
+                    // 5. Initialize interactions (word reveals)
+                    if (typeof window.initInteractions === 'function' && !window.initInteractions_done) {
+                        window.initInteractions();
+                        window.moduleInitStatus.interactions = true;
+                        console.log('✓ interactions initialized');
+                    }
+                } catch (e) {
+                    console.error('interactions initialization failed:', e);
+                }
+                
+                // 6. Refresh ScrollTriggers with proper timing
+                setTimeout(() => {
+                    try {
+                        if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function' && window.ScrollTrigger.getAll().length > 0) {
+                            window.ScrollTrigger.refresh();
+                            console.log('✓ ScrollTrigger refreshed');
+                        }
+                    } catch (e) {
+                        console.error('ScrollTrigger refresh failed:', e);
+                    }
+                    
+                    // Log initialization summary
+                    const successCount = Object.values(window.moduleInitStatus).filter(v => v).length;
+                    console.log(`Module initialization complete: ${successCount}/5 modules successful`);
+                }, 200);
+            }
+        }
+    </script>
+</body>
+
+</html>

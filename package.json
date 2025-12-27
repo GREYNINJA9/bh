@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "http-server ./ -p ${PORT:-8000} -c-1",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "canvas-confetti": "^1.9.4",
+    "gsap": "^3.14.2",
+    "http-server": "^14.1.1",
+    "three": "^0.182.0",
+    "vanilla-tilt": "^1.8.1",
+    "vite": "^7.3.0"
+  }
+}
