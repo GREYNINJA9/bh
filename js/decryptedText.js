@@ -71,6 +71,17 @@ class DecryptedText {
         this.visualContainer.style.lineHeight = computedStyle.lineHeight;
         this.visualContainer.style.letterSpacing = computedStyle.letterSpacing;
         
+        // Store initial styles to prevent re-inheritance
+        this._lockedStyles = {
+          fontFamily: computedStyle.fontFamily,
+          fontSize: computedStyle.fontSize,
+          fontWeight: computedStyle.fontWeight,
+          fontStyle: computedStyle.fontStyle,
+          color: computedStyle.color,
+          lineHeight: computedStyle.lineHeight,
+          letterSpacing: computedStyle.letterSpacing
+        };
+        
         this.element.appendChild(this.visualContainer);
     }
 

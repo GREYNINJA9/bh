@@ -1,6 +1,8 @@
 // js/scrollAnimations.js
 // FIXED: Proper scroll-synced reveal animations using GSAP ScrollTrigger
 // Sections stay in viewport while animating
+// Mobile: scroll-triggered 3D tilt effects
+// Desktop: traditional box-shadow lift effects
 
 function initScrollAnimations() {
   const sections = document.querySelectorAll('.story-section:not(.scroll-stack-card), .final-section');
@@ -18,6 +20,13 @@ function initScrollAnimations() {
     console.error('scrollAnimations: Failed to register ScrollTrigger plugin:', e);
     return;
   }
+
+  // Detect mobile/touch devices
+  const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isMobileViewport = window.innerWidth <= 768;
+  const shouldUseMobile3D = isMobile && isMobileViewport;
+
+  console.log(`ScrollAnimations: Mobile 3D effects ${shouldUseMobile3D ? 'enabled' : 'disabled'}`);
 
   // Create reveal animations for each section
   sections.forEach((section, index) => {
@@ -60,40 +69,78 @@ function initScrollAnimations() {
       }
     });
 
-    // Add scroll-based card lift effect
+    // Add scroll-based card effects (desktop hover-like, mobile 3D tilt)
     const card = section.querySelector('.story-card');
     if (card) {
-      gsap.fromTo(
-        card,
-        {
-          boxShadow: 'var(--shadow-soft)'
-        },
-        {
-          boxShadow: 'var(--shadow-medium), 0 0 20px rgba(255, 150, 181, 0.2)',
+      if (shouldUseMobile3D) {
+        // Mobile: 3D tilt effect on scroll entry
+        gsap.to(card, {
           scrollTrigger: {
             trigger: section,
-            start: 'top 65%',
-            end: 'top 35%',
-            scrub: 0.5,
+            start: 'top 70%',
+            end: 'top 30%',
             onEnter: () => {
-              card.classList.add('scroll-active');
+              card.classList.add('mobile-3d-entering');
+              setTimeout(() => {
+                card.classList.remove('mobile-3d-entering');
+                card.classList.add('mobile-3d-active');
+              }, 800);
             },
             onLeave: () => {
-              card.classList.remove('scroll-active');
+              card.classList.remove('mobile-3d-active');
+              card.classList.add('mobile-3d-cleanup');
+              setTimeout(() => card.classList.remove('mobile-3d-cleanup'), 100);
             },
             onEnterBack: () => {
-              card.classList.add('scroll-active');
+              card.classList.add('mobile-3d-active');
             },
             onLeaveBack: () => {
-              card.classList.remove('scroll-active');
+              card.classList.remove('mobile-3d-active');
+              card.classList.add('mobile-3d-cleanup');
+              setTimeout(() => card.classList.remove('mobile-3d-cleanup'), 100);
             }
           }
-        }
-      );
+        });
+      } else {
+        // Desktop: existing box-shadow lift effect
+        gsap.fromTo(
+          card,
+          { boxShadow: 'var(--shadow-soft)' },
+          {
+            boxShadow: 'var(--shadow-medium), 0 0 20px rgba(255, 150, 181, 0.2)',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 65%',
+              end: 'top 35%',
+              scrub: 0.5,
+              onEnter: () => card.classList.add('scroll-active'),
+              onLeave: () => card.classList.remove('scroll-active'),
+              onEnterBack: () => card.classList.add('scroll-active'),
+              onLeaveBack: () => card.classList.remove('scroll-active')
+            }
+          }
+        );
+      }
     }
   });
 
+  // Handle viewport resize and orientation changes
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const newIsMobileViewport = window.innerWidth <= 768;
+      if (newIsMobileViewport !== isMobileViewport) {
+        console.log('ScrollAnimations: Viewport changed, refreshing...');
+        if (window.ScrollTrigger) {
+          window.ScrollTrigger.refresh();
+        }
+      }
+    }, 250);
+  });
+
   window.initScrollAnimations_done = true;
+}
 }
 
 window.initScrollAnimations = initScrollAnimations;

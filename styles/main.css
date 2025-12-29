@@ -168,6 +168,28 @@ body.hero-locked {
 body.hero-locked #main-content {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body.hero-locked #main-content::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 243, 246, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9998;
+    pointer-events: auto;
+}
+
+body.hero-locked .story-section,
+body.hero-locked .final-section {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
 }
 
 body.hero-locked .audio-player,
@@ -230,10 +252,11 @@ body.hero-locked .progress-bar-container {
     letter-spacing: 0.03em;
     font-weight: 500;
     color: rgba(59, 47, 63, 0.92);
-    background: linear-gradient(135deg, rgba(255, 215, 230, 0.78), rgba(239, 230, 255, 0.68));
+    background: linear-gradient(135deg, rgba(255, 182, 210, 0.95), rgba(220, 200, 255, 0.92));
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    box-shadow: 0 10px 30px rgba(255, 150, 181, 0.10);
+    box-shadow: 0 10px 30px rgba(255, 150, 181, 0.25);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
     transition: transform 0.35s var(--hero-ease), box-shadow 0.35s var(--hero-ease), opacity 0.35s var(--hero-ease);
     cursor: pointer;
     opacity: 0;
@@ -242,7 +265,7 @@ body.hero-locked .progress-bar-container {
 
 .hero-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba(255, 150, 181, 0.14);
+    box-shadow: 0 14px 36px rgba(255, 150, 181, 0.35);
 }
 
 .hero-cta:active {
@@ -302,8 +325,16 @@ body {
     padding: 2rem 1.5rem 4rem;
 }
 
+#main-content {
+    transition: opacity 0.8s ease-out, visibility 0s linear 0s;
+}
+
+body.hero-locked #main-content {
+    transition: opacity 0.8s ease-out, visibility 0s linear 0.8s;
+}
+
 /* Ensure story content has proper spacing above audio player */
-.story-section {
+body:not(.hero-locked) .story-section {
   transform: none;
   margin-bottom: 4rem;
   opacity: 1 !important;
@@ -933,25 +964,63 @@ p {
         padding: 1.25rem;
     }
 
-    /* Disable 3D transforms on mobile for performance */
+    /* Enable scroll-based 3D transforms on mobile */
     .story-section .story-card,
     .final-section .story-card {
-        transform: none !important;
-        transform-style: flat !important;
-        perspective: none !important;
+        /* Keep base transform-style for 3D context */
+        transform-style: preserve-3d;
+        /* Disable hover-based transforms, but allow scroll-based */
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                    box-shadow 0.4s ease;
     }
 
-    .story-section.in-view {
-        transform: none !important;
-    }
-
+    /* Disable hover effects on mobile, but keep scroll-active */
     .story-section .story-card:hover,
-    .story-section .story-card.touch-active,
-    .story-section .story-card.scroll-active,
-    .final-section .story-card:hover,
-    .final-section .story-card.touch-active,
-    .final-section .story-card.scroll-active {
+    .final-section .story-card:hover {
         transform: none !important;
+    }
+
+    /* Mobile scroll-triggered 3D effects */
+    .story-section .story-card.mobile-3d-active {
+        transform: perspective(1200px) rotateY(1.5deg) rotateX(-0.8deg) scale(1.005);
+        box-shadow: var(--shadow-medium), 0 0 12px rgba(var(--accent-primary-rgb), 0.15);
+        will-change: transform;
+    }
+
+    .final-section .story-card.mobile-3d-active {
+        transform: perspective(1200px) rotateY(-1.5deg) rotateX(0.8deg) scale(1.005);
+        box-shadow: var(--shadow-medium), 0 0 12px rgba(var(--yes-color-rgb), 0.15);
+        will-change: transform;
+    }
+
+    /* Entrance animation for mobile */
+    @keyframes mobile3dEnter {
+        0% {
+            transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(0.98);
+            opacity: 0.7;
+        }
+        100% {
+            transform: perspective(1200px) rotateY(1.5deg) rotateX(-0.8deg) scale(1.005);
+            opacity: 1;
+        }
+    }
+
+    .story-section .story-card.mobile-3d-entering {
+        animation: mobile3dEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* Hardware acceleration for mobile 3D */
+    .story-section .story-card.mobile-3d-active,
+    .final-section .story-card.mobile-3d-active {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+    }
+    
+    /* Cleanup will-change after animation */
+    .story-section .story-card.mobile-3d-cleanup,
+    .final-section .story-card.mobile-3d-cleanup {
+        will-change: auto;
     }
 
     /* Disable hover animations on mobile */
@@ -1328,6 +1397,42 @@ p {
     text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3) !important;
 }
 
+/* Lock celebration heading styles - prevent emotion classes from overriding */
+.celebration .story-card h1.celebration-heading,
+.celebration .story-card h1.celebration-heading *,
+.emotion-joy .story-card h1.celebration-heading,
+.emotion-joy .story-card h1.celebration-heading *,
+.final-section.emotion-joy .story-card h1.celebration-heading,
+.final-section.emotion-joy .story-card h1.celebration-heading * {
+    font-family: 'Great Vibes', cursive !important;
+    font-weight: 800 !important;
+    color: #e91e63 !important;
+    font-size: 3rem !important;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3) !important;
+    filter: none !important;
+}
+
+/* Ensure DecryptedText spans within celebration heading are locked */
+.celebration .story-card h1.celebration-heading span,
+.emotion-joy .story-card h1.celebration-heading span,
+.final-section.emotion-joy .story-card h1.celebration-heading span {
+    font-family: 'Great Vibes', cursive !important;
+    font-weight: 800 !important;
+    color: #e91e63 !important;
+    font-size: inherit !important;
+    text-shadow: inherit !important;
+}
+
+/* Prevent emotion classes from targeting celebration heading */
+.emotion-joy h1.celebration-heading,
+.emotion-joy h1.celebration-heading .char,
+.emotion-joy h1.celebration-heading span {
+    color: #e91e63 !important;
+    font-weight: 800 !important;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3) !important;
+    filter: none !important;
+}
+
 @media (max-width: 768px) {
   /* Reduce parallax intensity on mobile */
   .story-section {
@@ -1345,6 +1450,48 @@ p {
     transform: none !important;
     perspective: none !important;
   }
+  
+  /* Lock celebration heading on mobile */
+  .celebration .story-card h1.celebration-heading,
+  .emotion-joy .story-card h1.celebration-heading,
+  .final-section.emotion-joy .story-card h1.celebration-heading {
+    font-family: 'Great Vibes', cursive !important;
+    font-weight: 800 !important;
+    color: #e91e63 !important;
+    font-size: 2rem !important;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3) !important;
+    filter: none !important;
+  }
+  
+  /* Responsive photo circle for mobile */
+  .photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .photo-circle {
+    width: min(280px, 80vw);
+    height: min(280px, 80vw);
+    max-width: 280px;
+    max-height: 280px;
+    margin: 0 auto 1.5rem;
+    border-width: 4px;
+    box-shadow: 0 8px 30px rgba(255, 150, 181, 0.25);
+  }
+  
+  .celebration-mascots {
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .cute-pandas {
+    width: 10rem;
+    height: 10rem;
+  }
 }
 
 /* Responsive adjustments for emoji & mascot */
@@ -1357,6 +1504,33 @@ p {
         font-size: 2.2rem;
         bottom: 76px;
     }
+}
+
+/* Extra-small screens (≤480px) - photo circle overrides */
+@media (max-width: 480px) {
+  .photo-circle {
+    width: min(240px, 75vw);
+    height: min(240px, 75vw);
+    max-width: 240px;
+    max-height: 240px;
+    border-width: 3px;
+    font-size: 2rem;
+  }
+  
+  .photo-placeholder {
+    padding: 0 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .cute-pandas {
+    width: 8rem;
+    height: 8rem;
+  }
+  
+  .celebration-mascots {
+    gap: 1rem;
+    margin: 1rem 0;
+  }
 }
 
 /* Celebration styles */
@@ -1376,6 +1550,10 @@ p {
 .photo-placeholder {
     text-align: center;
     margin-top: 2rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .photo-circle {

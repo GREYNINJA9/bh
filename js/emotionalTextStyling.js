@@ -88,9 +88,18 @@ function initEmotionalTextStyling() {
     const sections = getSectionsInZone(zone);
     sections.forEach(section => {
       if (section) {
-        removeAllEmotionClasses(section);
-        section.classList.add(zone.emotionClass);
-        console.log(`emotionalTextStyling: Entered zone "${zone.name}" - Applied ${zone.emotionClass} class`);
+        // Check if this section contains the celebration heading
+        const hasCelebrationHeading = section.querySelector('h1.celebration-heading');
+        
+        // Only apply emotion styling if there's no celebration heading
+        // or if the celebration heading is not yet created
+        if (!hasCelebrationHeading || !document.body.classList.contains('celebration')) {
+          removeAllEmotionClasses(section);
+          section.classList.add(zone.emotionClass);
+          console.log(`emotionalTextStyling: Entered zone "${zone.name}" - Applied ${zone.emotionClass} class`);
+        } else {
+          console.log(`emotionalTextStyling: Skipping emotion styling for celebration section`);
+        }
       }
     });
   };

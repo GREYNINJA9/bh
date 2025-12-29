@@ -7,15 +7,26 @@ function initInteractions() {
 
   // Detect touch capability to prevent hover animations on touch devices
   const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isMobileViewport = window.innerWidth <= 768;
 
   cards.forEach(card => {
-    // Touch effects for mobile
+    // Touch effects for mobile with 3D enhancement
     card.addEventListener('touchstart', () => {
       card.classList.add('touch-active');
+      // Add temporary 3D boost on touch
+      if (isTouchDevice && isMobileViewport) {
+        card.style.transform = 'perspective(1200px) rotateY(2deg) rotateX(-1deg) scale(1.01)';
+      }
     }, { passive: true });
 
     card.addEventListener('touchend', () => {
-      setTimeout(() => card.classList.remove('touch-active'), 150);
+      setTimeout(() => {
+        card.classList.remove('touch-active');
+        // Remove temporary boost, let scroll-based 3D take over
+        if (isTouchDevice && isMobileViewport) {
+          card.style.transform = '';
+        }
+      }, 200);
     }, { passive: true });
   });
 

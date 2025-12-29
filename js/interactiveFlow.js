@@ -262,7 +262,7 @@
       this.yesBtn.style.display = 'none';
       this.noBtn.style.display = 'none';
       this.finalCard.innerHTML = `
-        <h1>🎉 You made me the happiest person for the rest of my life! 🎉</h1>
+        <h1 class="celebration-heading">🎉 You made me the happiest person for the rest of my life! 🎉</h1>
         <div class="celebration-mascots">
           <img src="https://media.tenor.com/yr7z512oIf4AAAAj/peach-goma-shy-blush-heart.gif" alt="Peach Goma" class="cute-pandas">
         </div>
@@ -275,6 +275,13 @@
       // Init DecryptedText on the new H1
       const finalH1 = this.finalCard.querySelector('h1');
       if (window.DecryptedText && finalH1) {
+        // Lock the h1 styles before DecryptedText initialization
+        finalH1.style.fontFamily = "'Great Vibes', cursive";
+        finalH1.style.fontWeight = "800";
+        finalH1.style.color = "#e91e63";
+        finalH1.style.fontSize = "3rem";
+        finalH1.style.textShadow = "2px 2px 4px rgba(255, 105, 180, 0.3)";
+        
         new DecryptedText(finalH1, {
           animateOn: 'none', // Don't auto-trigger on view to prevent re-animation on scroll
           speed: 1,
@@ -289,6 +296,15 @@
           if (decryptedTextInstance && !decryptedTextInstance.hasAnimated) {
             decryptedTextInstance.isHovering = true;
             decryptedTextInstance.startScramble();
+            
+            // Lock visual container styles after animation starts
+            if (decryptedTextInstance.visualContainer) {
+              decryptedTextInstance.visualContainer.style.fontFamily = "'Great Vibes', cursive";
+              decryptedTextInstance.visualContainer.style.fontWeight = "800";
+              decryptedTextInstance.visualContainer.style.color = "#e91e63";
+              decryptedTextInstance.visualContainer.style.fontSize = "3rem";
+              decryptedTextInstance.visualContainer.style.textShadow = "2px 2px 4px rgba(255, 105, 180, 0.3)";
+            }
           }
         }, 500);
       }
