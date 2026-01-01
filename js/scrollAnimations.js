@@ -141,7 +141,6 @@ function initScrollAnimations() {
 
   window.initScrollAnimations_done = true;
 }
-}
 
 window.initScrollAnimations = initScrollAnimations;
 

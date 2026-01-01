@@ -39,47 +39,59 @@
     /* --no-color: #ffb3b3 */
     --yes-foreground: #274b3c;
     --no-foreground: #6a2d2d;
-    
+
     /* Emotional gradient colors for story progression */
     --emotion-nostalgia-start: #f3e8ff;
     --emotion-nostalgia-mid: #ffe6f2;
     --emotion-nostalgia-end: #fff0f6;
-    
+
     --emotion-longing-start: #ffd9d0;
     --emotion-longing-mid: #ffebf0;
     --emotion-longing-end: #ffe6ea;
-    
+
     --emotion-vulnerability-start: #e6b8d4;
     --emotion-vulnerability-mid: #f0c4d8;
     --emotion-vulnerability-end: #ffd7e6;
-    
+
     --emotion-courage-start: #ffc4a3;
     --emotion-courage-mid: #ffd7b5;
     --emotion-courage-end: #ffe6cc;
-    
+
     --emotion-reflection-start: #e8d4f0;
     --emotion-reflection-mid: #f0dff5;
     --emotion-reflection-end: #f8ebfa;
-    
+
     --emotion-joy-start: #ffd700;
     --emotion-joy-mid: #ffb3d9;
     --emotion-joy-end: #ff96b5;
-    
+
     /* Emotional text colors for headings */
-    --emotion-text-nostalgia: #8b7ba8;        /* Soft purple for calm nostalgia */
-    --emotion-text-longing: #d97aa6;          /* Rose pink for longing */
-    --emotion-text-vulnerability: #b565a7;    /* Deep mauve for vulnerability */
-    --emotion-text-courage: #e67e50;          /* Warm orange for courage */
-    --emotion-text-reflection: #9b7fb8;       /* Muted lavender for reflection */
-    --emotion-text-joy: #ff6b9d;              /* Vibrant pink for joy */
-    
+    --emotion-text-nostalgia: #8b7ba8;
+    /* Soft purple for calm nostalgia */
+    --emotion-text-longing: #d97aa6;
+    /* Rose pink for longing */
+    --emotion-text-vulnerability: #b565a7;
+    /* Deep mauve for vulnerability */
+    --emotion-text-courage: #e67e50;
+    /* Warm orange for courage */
+    --emotion-text-reflection: #9b7fb8;
+    /* Muted lavender for reflection */
+    --emotion-text-joy: #ff6b9d;
+    /* Vibrant pink for joy */
+
     /* Emotional text colors for paragraphs */
-    --emotion-para-nostalgia: #6d5d7e;        /* Darker soft purple */
-    --emotion-para-longing: #a85d7f;          /* Darker rose */
-    --emotion-para-vulnerability: #8b4d8a;    /* Darker mauve */
-    --emotion-para-courage: #c4613d;          /* Darker orange */
-    --emotion-para-reflection: #7a6594;       /* Darker lavender */
-    --emotion-para-joy: #e5568a;              /* Darker vibrant pink */
+    --emotion-para-nostalgia: #6d5d7e;
+    /* Darker soft purple */
+    --emotion-para-longing: #a85d7f;
+    /* Darker rose */
+    --emotion-para-vulnerability: #8b4d8a;
+    /* Darker mauve */
+    --emotion-para-courage: #c4613d;
+    /* Darker orange */
+    --emotion-para-reflection: #7a6594;
+    /* Darker lavender */
+    --emotion-para-joy: #e5568a;
+    /* Darker vibrant pink */
 }
 
 /* Cloud Background */
@@ -92,10 +104,10 @@
     z-index: -1;
     overflow: hidden;
     /* Initial gradient - will be animated by emotionalBackground.js */
-    background: linear-gradient(135deg, 
-        var(--emotion-nostalgia-start) 0%, 
-        var(--emotion-nostalgia-mid) 50%, 
-        var(--emotion-nostalgia-end) 100%);
+    background: linear-gradient(135deg,
+            var(--emotion-nostalgia-start) 0%,
+            var(--emotion-nostalgia-mid) 50%,
+            var(--emotion-nostalgia-end) 100%);
     transition: background 0.8s ease-out;
 }
 
@@ -162,7 +174,7 @@
 }
 
 body.hero-locked {
-    overflow: hidden;
+    /* overflow: hidden removed to allow scrolling while content remains protected */
 }
 
 body.hero-locked #main-content {
@@ -335,14 +347,14 @@ body.hero-locked #main-content {
 
 /* Ensure story content has proper spacing above audio player */
 body:not(.hero-locked) .story-section {
-  transform: none;
-  margin-bottom: 4rem;
-  opacity: 1 !important;
-  visibility: visible !important;
+    transform: none;
+    margin-bottom: 4rem;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .story-card {
-  /* Removed will-change and backface-visibility for better performance */
+    /* Removed will-change and backface-visibility for better performance */
 }
 
 .final-section {
@@ -847,6 +859,24 @@ p {
     }
 }
 
+.fadeUp {
+    animation: fadeUp both;
+    animation-timeline: view();
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
 /* Small decorative floating animation */
 @keyframes gentleFloat {
     0% {
@@ -865,81 +895,194 @@ p {
 /* Emotional text styling classes */
 .emotion-nostalgia h1,
 .emotion-nostalgia .char {
-  color: var(--emotion-text-nostalgia) !important;
-  font-weight: 400 !important;
+    color: var(--emotion-text-nostalgia) !important;
+    font-weight: 400 !important;
 }
 
 .emotion-nostalgia p,
 .emotion-nostalgia .word {
-  color: var(--emotion-para-nostalgia) !important;
+    color: var(--emotion-para-nostalgia) !important;
 }
 
 .emotion-longing h1,
 .emotion-longing .char {
-  color: var(--emotion-text-longing) !important;
-  font-weight: 500 !important;
-  text-shadow: 0 0 8px rgba(217, 122, 166, 0.3);
+    color: var(--emotion-text-longing) !important;
+    font-weight: 500 !important;
+    text-shadow: 0 0 8px rgba(217, 122, 166, 0.3);
 }
 
 .emotion-longing p,
 .emotion-longing .word {
-  color: var(--emotion-para-longing) !important;
-  text-shadow: 0 0 4px rgba(168, 93, 127, 0.2);
+    color: var(--emotion-para-longing) !important;
+    text-shadow: 0 0 4px rgba(168, 93, 127, 0.2);
 }
 
 .emotion-vulnerability h1,
 .emotion-vulnerability .char {
-  color: var(--emotion-text-vulnerability) !important;
-  font-weight: 600 !important;
-  text-shadow: 0 0 12px rgba(181, 101, 167, 0.4);
-  filter: drop-shadow(0 2px 4px rgba(181, 101, 167, 0.3));
+    color: var(--emotion-text-vulnerability) !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 12px rgba(181, 101, 167, 0.4);
+    filter: drop-shadow(0 2px 4px rgba(181, 101, 167, 0.3));
 }
 
 .emotion-vulnerability p,
 .emotion-vulnerability .word {
-  color: var(--emotion-para-vulnerability) !important;
-  text-shadow: 0 0 6px rgba(139, 77, 138, 0.3);
+    color: var(--emotion-para-vulnerability) !important;
+    text-shadow: 0 0 6px rgba(139, 77, 138, 0.3);
 }
 
 .emotion-courage h1,
 .emotion-courage .char {
-  color: var(--emotion-text-courage) !important;
-  font-weight: 700 !important;
-  text-shadow: 0 0 16px rgba(230, 126, 80, 0.5);
-  filter: drop-shadow(0 3px 6px rgba(196, 97, 61, 0.4));
+    color: var(--emotion-text-courage) !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 16px rgba(230, 126, 80, 0.5);
+    filter: drop-shadow(0 3px 6px rgba(196, 97, 61, 0.4));
 }
 
 .emotion-courage p,
 .emotion-courage .word {
-  color: var(--emotion-para-courage) !important;
-  text-shadow: 0 0 8px rgba(196, 97, 61, 0.3);
+    color: var(--emotion-para-courage) !important;
+    text-shadow: 0 0 8px rgba(196, 97, 61, 0.3);
 }
 
 .emotion-reflection h1,
 .emotion-reflection .char {
-  color: var(--emotion-text-reflection) !important;
-  font-weight: 500 !important;
-  text-shadow: 0 0 8px rgba(155, 127, 184, 0.3);
+    color: var(--emotion-text-reflection) !important;
+    font-weight: 500 !important;
+    text-shadow: 0 0 8px rgba(155, 127, 184, 0.3);
 }
 
 .emotion-reflection p,
 .emotion-reflection .word {
-  color: var(--emotion-para-reflection) !important;
-  text-shadow: 0 0 4px rgba(122, 101, 148, 0.2);
+    color: var(--emotion-para-reflection) !important;
+    text-shadow: 0 0 4px rgba(122, 101, 148, 0.2);
 }
 
 .emotion-joy h1,
 .emotion-joy .char {
-  color: var(--emotion-text-joy) !important;
-  font-weight: 800 !important;
-  text-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
-  filter: drop-shadow(0 4px 8px rgba(229, 86, 138, 0.5));
+    color: var(--emotion-text-joy) !important;
+    font-weight: 800 !important;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+    filter: drop-shadow(0 4px 8px rgba(229, 86, 138, 0.5));
 }
 
 .emotion-joy p,
 .emotion-joy .word {
-  color: var(--emotion-para-joy) !important;
-  text-shadow: 0 0 10px rgba(229, 86, 138, 0.4);
+    color: var(--emotion-para-joy) !important;
+    text-shadow: 0 0 10px rgba(229, 86, 138, 0.4);
+}
+
+/* Base final message styles */
+.final-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    text-align: center;
+    max-width: 90vw;
+    pointer-events: none;
+    font-family: 'Great Vibes', cursive;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    line-height: 1.2;
+}
+
+.final-message strong {
+    display: inline-block;
+    font-weight: inherit;
+}
+
+/* Message hidden state (for fade-in) */
+.final-message.message-hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Click 1: Subtle longing */
+.final-message.final-message-click-1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #d97aa6;
+    /* Added solid color */
+    /* Removed background-clip and text-fill-color */
+    text-shadow: 0 2px 8px rgba(217, 122, 166, 0.4);
+    /* Reduced shadow layers */
+    transform: translate(-50%, -50%) perspective(800px) translateZ(20px) scale(1);
+}
+
+/* Click 2: Deeper vulnerability */
+.final-message.final-message-click-2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #b565a7;
+    /* Added solid color */
+    /* Removed background-clip and text-fill-color */
+    text-shadow: 0 3px 12px rgba(181, 101, 167, 0.5);
+    /* Reduced shadow layers */
+    transform: translate(-50%, -50%) perspective(1000px) translateZ(40px) rotateX(5deg) scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(181, 101, 167, 0.3));
+}
+
+/* Click 3: Strong courage with pulse */
+.final-message.final-message-click-3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #e67e50;
+    /* Added solid color */
+    /* Removed background-clip and text-fill-color */
+    text-shadow: 0 4px 16px rgba(230, 126, 80, 0.6);
+    /* Reduced shadow layers */
+    transform: translate(-50%, -50%) perspective(1200px) translateZ(60px) rotateX(8deg) rotateY(-3deg) scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(230, 126, 80, 0.4)) drop-shadow(0 0 20px rgba(255, 107, 157, 0.3));
+    animation: messagePulse 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+/* Click 4: Intense joy with intense pulse */
+.final-message.final-message-click-4 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ff6b9d;
+    /* Added solid color */
+    /* Removed background-clip and text-fill-color */
+    text-shadow: 0 6px 20px rgba(255, 107, 157, 0.7), 0 12px 40px rgba(255, 150, 181, 0.6);
+    /* Reduced shadow layers */
+    transform: translate(-50%, -50%) perspective(1500px) translateZ(80px) rotateX(10deg) rotateY(-5deg) scale(1.15);
+    filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.5)) drop-shadow(0 0 30px rgba(255, 150, 181, 0.4)) drop-shadow(0 0 50px rgba(255, 107, 157, 0.2));
+    animation: messageIntensePulse 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+/* Pulse animation for click 3 */
+@keyframes messagePulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) perspective(1200px) translateZ(60px) rotateX(8deg) rotateY(-3deg) scale(1.1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) perspective(1200px) translateZ(60px) rotateX(8deg) rotateY(-3deg) scale(1.13);
+    }
+}
+
+/* Intense pulse animation for click 4 */
+@keyframes messageIntensePulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) perspective(1500px) translateZ(80px) rotateX(10deg) rotateY(-5deg) scale(1.15);
+    }
+
+    25% {
+        transform: translate(-50%, -50%) perspective(1500px) translateZ(80px) rotateX(10deg) rotateY(-5deg) scale(1.20) rotateZ(2deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) perspective(1500px) translateZ(80px) rotateX(10deg) rotateY(-5deg) scale(1.23) rotateZ(0deg);
+    }
+
+    75% {
+        transform: translate(-50%, -50%) perspective(1500px) translateZ(80px) rotateX(10deg) rotateY(-5deg) scale(1.20) rotateZ(-2deg);
+    }
 }
 
 /* Responsive adjustments */
@@ -960,189 +1103,268 @@ p {
         padding: 14px 18px;
     }
 
-    .story-section .story-card {
-        padding: 1.25rem;
+    /* Mobile final message styles - reduced sizes and effects */
+    .final-message.final-message-click-1 {
+        font-size: 1.35rem;
+        color: #d97aa6;
+        /* Added solid color */
+        text-shadow: 0 2px 6px rgba(217, 122, 166, 0.4);
+        transform: translate(-50%, -50%) perspective(600px) translateZ(10px) scale(1);
     }
 
-    /* Enable scroll-based 3D transforms on mobile */
-    .story-section .story-card,
-    .final-section .story-card {
-        /* Keep base transform-style for 3D context */
-        transform-style: preserve-3d;
-        /* Disable hover-based transforms, but allow scroll-based */
-        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                    box-shadow 0.4s ease;
+    .final-message.final-message-click-2 {
+        font-size: 1.58rem;
+        color: #b565a7;
+        /* Added solid color */
+        text-shadow: 0 2px 8px rgba(181, 101, 167, 0.4);
+        /* Reduced shadow layers */
+        transform: translate(-50%, -50%) perspective(800px) translateZ(20px) rotateX(2.5deg) scale(1.02);
+        filter: drop-shadow(0 2px 4px rgba(181, 101, 167, 0.2));
     }
 
-    /* Disable hover effects on mobile, but keep scroll-active */
-    .story-section .story-card:hover,
-    .final-section .story-card:hover {
-        transform: none !important;
+    .final-message.final-message-click-3 {
+        font-size: 1.88rem;
+        color: #e67e50;
+        /* Added solid color */
+        text-shadow: 0 2px 10px rgba(230, 126, 80, 0.5);
+        /* Reduced shadow layers */
+        transform: translate(-50%, -50%) perspective(900px) translateZ(30px) rotateX(4deg) rotateY(-1.5deg) scale(1.05);
+        filter: drop-shadow(0 3px 6px rgba(230, 126, 80, 0.3));
+        animation: messagePulse-mobile 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     }
 
-    /* Mobile scroll-triggered 3D effects */
-    .story-section .story-card.mobile-3d-active {
-        transform: perspective(1200px) rotateY(1.5deg) rotateX(-0.8deg) scale(1.005);
-        box-shadow: var(--shadow-medium), 0 0 12px rgba(var(--accent-primary-rgb), 0.15);
-        will-change: transform;
+    .final-message.final-message-click-4 {
+        font-size: 2.1rem;
+        color: #ff6b9d;
+        /* Added solid color */
+        text-shadow: 0 4px 12px rgba(255, 107, 157, 0.6), 0 8px 20px rgba(255, 150, 181, 0.5);
+        /* Reduced shadow layers */
+        transform: translate(-50%, -50%) perspective(1200px) translateZ(40px) rotateX(5deg) rotateY(-2.5deg) scale(1.08);
+        filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.4)) drop-shadow(0 0 15px rgba(255, 150, 181, 0.3));
+        animation: messageIntensePulse-mobile 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     }
 
-    .final-section .story-card.mobile-3d-active {
-        transform: perspective(1200px) rotateY(-1.5deg) rotateX(0.8deg) scale(1.005);
-        box-shadow: var(--shadow-medium), 0 0 12px rgba(var(--yes-color-rgb), 0.15);
-        will-change: transform;
-    }
+    /* Mobile pulse animations with reduced intensity */
+    @keyframes messagePulse-mobile {
 
-    /* Entrance animation for mobile */
-    @keyframes mobile3dEnter {
-        0% {
-            transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(0.98);
-            opacity: 0.7;
-        }
+        0%,
         100% {
-            transform: perspective(1200px) rotateY(1.5deg) rotateX(-0.8deg) scale(1.005);
-            opacity: 1;
+            transform: translate(-50%, -50%) perspective(900px) translateZ(30px) rotateX(4deg) rotateY(-1.5deg) scale(1.05);
+        }
+
+        50% {
+            transform: translate(-50%, -50%) perspective(900px) translateZ(30px) rotateX(4deg) rotateY(-1.5deg) scale(1.07);
         }
     }
 
-    .story-section .story-card.mobile-3d-entering {
-        animation: mobile3dEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
+    @keyframes messageIntensePulse-mobile {
 
-    /* Hardware acceleration for mobile 3D */
-    .story-section .story-card.mobile-3d-active,
-    .final-section .story-card.mobile-3d-active {
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        transform: translate3d(0, 0, 0); /* Force GPU acceleration */
-    }
-    
-    /* Cleanup will-change after animation */
-    .story-section .story-card.mobile-3d-cleanup,
-    .final-section .story-card.mobile-3d-cleanup {
-        will-change: auto;
-    }
-
-    /* Disable hover animations on mobile */
-    .story-section .story-card:hover h1,
-    .story-section .story-card:hover p {
-        animation: none !important;
-        transform: none !important;
-    }
-
-    .story-section:nth-child(odd) .story-card:hover p {
-        animation: none !important;
-    }
-
-    /* Hide sketch backgrounds on mobile */
-    .sketch-bg {
-        display: none;
-    }
-
-    /* Optimize cloud layers for mobile */
-    .cloud-layer {
-        filter: blur(30px);
-        animation-duration: 90s;
-    }
-
-    .cloud-layer:nth-child(2) {
-        filter: blur(20px);
-        animation-duration: 70s;
-    }
-
-    .cloud-layer:nth-child(3) {
-        filter: blur(25px);
-        animation-duration: 100s;
-        opacity: 0.3;
-    }
-
-    /* Reduce cloud animation range */
-    @keyframes moveClouds {
-        0% {
-            transform: translateX(-2%);
-        }
+        0%,
         100% {
-            transform: translateX(-8%);
+            transform: translate(-50%, -50%) perspective(1200px) translateZ(40px) rotateX(5deg) rotateY(-2.5deg) scale(1.08);
         }
-    }
 
-    /* Mobile optimizations for emotional text styling */
-    .emotion-longing h1,
-    .emotion-vulnerability h1,
-    .emotion-courage h1,
-    .emotion-joy h1 {
-        text-shadow: none;
-        filter: none;
-    }
+        25% {
+            transform: translate(-50%, -50%) perspective(1200px) translateZ(40px) rotateX(5deg) rotateY(-2.5deg) scale(1.11) rotateZ(1deg);
+        }
 
-    .emotion-longing p,
-    .emotion-vulnerability p,
-    .emotion-courage p,
-    .emotion-joy p {
-        text-shadow: none;
+        50% {
+            transform: translate(-50%, -50%) perspective(1200px) translateZ(40px) rotateX(5deg) rotateY(-2.5deg) scale(1.13) rotateZ(0deg);
+        }
+
+        75% {
+            transform: translate(-50%, -50%) perspective(1200px) translateZ(40px) rotateX(5deg) rotateY(-2.5deg) scale(1.11) rotateZ(-1deg);
+        }
     }
 }
 
+.story-section .story-card {
+    padding: 1.25rem;
+}
+
+/* Enable scroll-based 3D transforms on mobile */
+.story-section .story-card,
+.final-section .story-card {
+    /* Keep base transform-style for 3D context */
+    transform-style: preserve-3d;
+    /* Disable hover-based transforms, but allow scroll-based */
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.4s ease;
+}
+
+/* Disable hover effects on mobile, but keep scroll-active */
+.story-section .story-card:hover,
+.final-section .story-card:hover {
+    transform: none !important;
+}
+
+/* Mobile scroll-triggered 3D effects */
+.story-section .story-card.mobile-3d-active {
+    transform: perspective(1200px) rotateY(1.5deg) rotateX(-0.8deg) scale(1.005);
+    box-shadow: var(--shadow-medium), 0 0 12px rgba(var(--accent-primary-rgb), 0.15);
+    will-change: transform;
+}
+
+.final-section .story-card.mobile-3d-active {
+    transform: perspective(1200px) rotateY(-1.5deg) rotateX(0.8deg) scale(1.005);
+    box-shadow: var(--shadow-medium), 0 0 12px rgba(var(--yes-color-rgb), 0.15);
+    will-change: transform;
+}
+
+/* Entrance animation for mobile */
+@keyframes mobile3dEnter {
+    0% {
+        transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(0.98);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: perspective(1200px) rotateY(1.5deg) rotateX(-0.8deg) scale(1.005);
+        opacity: 1;
+    }
+}
+
+.story-section .story-card.mobile-3d-entering {
+    animation: mobile3dEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Hardware acceleration for mobile 3D */
+.story-section .story-card.mobile-3d-active,
+.final-section .story-card.mobile-3d-active {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    /* Force GPU acceleration */
+}
+
+/* Cleanup will-change after animation */
+.story-section .story-card.mobile-3d-cleanup,
+.final-section .story-card.mobile-3d-cleanup {
+    will-change: auto;
+}
+
+/* Disable hover animations on mobile */
+.story-section .story-card:hover h1,
+.story-section .story-card:hover p {
+    animation: none !important;
+    transform: none !important;
+}
+
+.story-section:nth-child(odd) .story-card:hover p {
+    animation: none !important;
+}
+
+/* Hide sketch backgrounds on mobile */
+.sketch-bg {
+    display: none;
+}
+
+/* Optimize cloud layers for mobile */
+.cloud-layer {
+    filter: blur(30px);
+    animation-duration: 90s;
+}
+
+.cloud-layer:nth-child(2) {
+    filter: blur(20px);
+    animation-duration: 70s;
+}
+
+.cloud-layer:nth-child(3) {
+    filter: blur(25px);
+    animation-duration: 100s;
+    opacity: 0.3;
+}
+
+/* Reduce cloud animation range */
+@keyframes moveClouds {
+    0% {
+        transform: translateX(-2%);
+    }
+
+    100% {
+        transform: translateX(-8%);
+    }
+}
+
+/* Mobile optimizations for emotional text styling */
+.emotion-longing h1,
+.emotion-vulnerability h1,
+.emotion-courage h1,
+.emotion-joy h1 {
+    text-shadow: none;
+    filter: none;
+}
+
+.emotion-longing p,
+.emotion-vulnerability p,
+.emotion-courage p,
+.emotion-joy p {
+    text-shadow: none;
+}
+
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  /* Disable 3D transforms */
-  .story-section .story-card,
-  .final-section .story-card {
-    transform: none !important;
-    perspective: none !important;
-  }
-  
-  .story-section .story-card:hover,
-  .story-section .story-card.touch-active,
-  .story-section .story-card.scroll-active,
-  .final-section .story-card:hover,
-  .final-section .story-card.touch-active,
-  .final-section .story-card.scroll-active {
-    transform: none !important;
-  }
-  
-  /* Disable parallax background movement */
-  .sketch-bg {
-    transform: none !important;
-  }
-  
-  /* Disable cloud animations */
-  .cloud-layer {
-    animation: none !important;
-  }
-  
-  /* Disable background transitions */
-  .cloud-background {
-    transition: none !important;
-    background: linear-gradient(135deg, #ffe6f2 0%, #fff0f6 50%, #ffe6ea 100%) !important;
-  }
-  
-  /* Disable character/word animations */
-  .scroll-float .char,
-  .scroll-reveal .word {
-    opacity: 1 !important;
-    transform: none !important;
-  }
 
-  /* Disable emotional text effects */
-  .emotion-nostalgia h1,
-  .emotion-longing h1,
-  .emotion-vulnerability h1,
-  .emotion-courage h1,
-  .emotion-reflection h1,
-  .emotion-joy h1 {
-    text-shadow: none !important;
-    filter: none !important;
-    transition: none !important;
-  }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    /* Disable 3D transforms */
+    .story-section .story-card,
+    .final-section .story-card {
+        transform: none !important;
+        perspective: none !important;
+    }
+
+    .story-section .story-card:hover,
+    .story-section .story-card.touch-active,
+    .story-section .story-card.scroll-active,
+    .final-section .story-card:hover,
+    .final-section .story-card.touch-active,
+    .final-section .story-card.scroll-active {
+        transform: none !important;
+    }
+
+    /* Disable parallax background movement */
+    .sketch-bg {
+        transform: none !important;
+    }
+
+    /* Disable cloud animations */
+    .cloud-layer {
+        animation: none !important;
+    }
+
+    /* Disable background transitions */
+    .cloud-background {
+        transition: none !important;
+        background: linear-gradient(135deg, #ffe6f2 0%, #fff0f6 50%, #ffe6ea 100%) !important;
+    }
+
+    /* Disable character/word animations */
+    .scroll-float .char,
+    .scroll-reveal .word {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Disable emotional text effects */
+    .emotion-nostalgia h1,
+    .emotion-longing h1,
+    .emotion-vulnerability h1,
+    .emotion-courage h1,
+    .emotion-reflection h1,
+    .emotion-joy h1 {
+        text-shadow: none !important;
+        filter: none !important;
+        transition: none !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1434,64 +1656,65 @@ p {
 }
 
 @media (max-width: 768px) {
-  /* Reduce parallax intensity on mobile */
-  .story-section {
-    will-change: auto;
-  }
-  
-  /* Faster typewriter on mobile */
-  .story-card {
-    --typewriter-speed: 10ms;
-  }
-  
-  /* Disable 3D transforms for performance */
-  .story-section .story-card,
-  .story-section.in-view {
-    transform: none !important;
-    perspective: none !important;
-  }
-  
-  /* Lock celebration heading on mobile */
-  .celebration .story-card h1.celebration-heading,
-  .emotion-joy .story-card h1.celebration-heading,
-  .final-section.emotion-joy .story-card h1.celebration-heading {
-    font-family: 'Great Vibes', cursive !important;
-    font-weight: 800 !important;
-    color: #e91e63 !important;
-    font-size: 2rem !important;
-    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3) !important;
-    filter: none !important;
-  }
-  
-  /* Responsive photo circle for mobile */
-  .photo-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    margin-top: 1.5rem;
-  }
-  
-  .photo-circle {
-    width: min(280px, 80vw);
-    height: min(280px, 80vw);
-    max-width: 280px;
-    max-height: 280px;
-    margin: 0 auto 1.5rem;
-    border-width: 4px;
-    box-shadow: 0 8px 30px rgba(255, 150, 181, 0.25);
-  }
-  
-  .celebration-mascots {
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-  }
-  
-  .cute-pandas {
-    width: 10rem;
-    height: 10rem;
-  }
+
+    /* Reduce parallax intensity on mobile */
+    .story-section {
+        will-change: auto;
+    }
+
+    /* Faster typewriter on mobile */
+    .story-card {
+        --typewriter-speed: 10ms;
+    }
+
+    /* Disable 3D transforms for performance */
+    .story-section .story-card,
+    .story-section.in-view {
+        transform: none !important;
+        perspective: none !important;
+    }
+
+    /* Lock celebration heading on mobile */
+    .celebration .story-card h1.celebration-heading,
+    .emotion-joy .story-card h1.celebration-heading,
+    .final-section.emotion-joy .story-card h1.celebration-heading {
+        font-family: 'Great Vibes', cursive !important;
+        font-weight: 800 !important;
+        color: #e91e63 !important;
+        font-size: 2rem !important;
+        text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3) !important;
+        filter: none !important;
+    }
+
+    /* Responsive photo circle for mobile */
+    .photo-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .photo-circle {
+        width: min(280px, 80vw);
+        height: min(280px, 80vw);
+        max-width: 280px;
+        max-height: 280px;
+        margin: 0 auto 1.5rem;
+        border-width: 4px;
+        box-shadow: 0 8px 30px rgba(255, 150, 181, 0.25);
+    }
+
+    .celebration-mascots {
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .cute-pandas {
+        width: 10rem;
+        height: 10rem;
+    }
 }
 
 /* Responsive adjustments for emoji & mascot */
@@ -1508,29 +1731,29 @@ p {
 
 /* Extra-small screens (≤480px) - photo circle overrides */
 @media (max-width: 480px) {
-  .photo-circle {
-    width: min(240px, 75vw);
-    height: min(240px, 75vw);
-    max-width: 240px;
-    max-height: 240px;
-    border-width: 3px;
-    font-size: 2rem;
-  }
-  
-  .photo-placeholder {
-    padding: 0 0.75rem;
-    margin-top: 1rem;
-  }
-  
-  .cute-pandas {
-    width: 8rem;
-    height: 8rem;
-  }
-  
-  .celebration-mascots {
-    gap: 1rem;
-    margin: 1rem 0;
-  }
+    .photo-circle {
+        width: min(240px, 75vw);
+        height: min(240px, 75vw);
+        max-width: 240px;
+        max-height: 240px;
+        border-width: 3px;
+        font-size: 2rem;
+    }
+
+    .photo-placeholder {
+        padding: 0 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .cute-pandas {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .celebration-mascots {
+        gap: 1rem;
+        margin: 1rem 0;
+    }
 }
 
 /* Celebration styles */
@@ -1594,87 +1817,292 @@ p {
 }
 
 .story-section {
-  opacity: 1 !important;
-  visibility: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .story-card {
-  opacity: 1 !important;
-  visibility: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .story-card h1,
 .story-card h2,
 .story-card h3,
 .story-card p {
-  opacity: 1 !important;
-  visibility: visible !important;
-  color: inherit !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: inherit !important;
 }
 
 /* Animation states - always visible by default */
 .story-section:not(.visible) {
-  opacity: 1;
-  transform: none;
+    opacity: 1;
+    transform: none;
 }
 
 .story-section.visible {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 
 
 /* Ensure final section is always visible */
 .final-section {
-  opacity: 1 !important;
-  visibility: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .final-section .story-card {
-  opacity: 1 !important;
-  visibility: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Remove any AOS or ScrollReveal classes that might hide content */
 [data-aos] {
-  opacity: 1 !important;
-  transform: none !important;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 /* Ensure buttons are always clickable and visible */
 .yes-btn,
 .no-btn {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 .story-section.visible .story-card h1,
 .story-section.visible .story-card p {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
 }
 
 /* Fallback for JavaScript failure - ensure content always becomes visible */
 @keyframes fadeInContent {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 body:not(.hero-locked) #main-content {
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  animation: fadeInContent 0.5s ease 1s forwards;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    animation: fadeInContent 0.5s ease 1s forwards;
 }
 
 /* Ensure hero-inner has minimum height to prevent collapse */
 .hero-inner {
-  min-height: 200px;
+    min-height: 200px;
+}
+
+/* See Here Link Styling */
+.see-here-link {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding: 0 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(120deg, rgba(255, 150, 181, 0.1), rgba(255, 182, 193, 0.15));
+    border-radius: 4px;
+}
+
+.see-here-link:hover {
+    color: var(--yes-color);
+    background: linear-gradient(120deg, rgba(255, 150, 181, 0.2), rgba(255, 182, 193, 0.25));
+    transform: translateY(-1px);
+}
+
+.see-here-link:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Section-13 specific positioning for see-here link */
+#section-13 .story-card {
+    position: relative;
+    padding-bottom: 3.5rem;
+}
+
+#section-13 .see-here-link {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(255, 150, 181, 0.15), rgba(255, 182, 193, 0.2));
+    border: 2px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(255, 150, 181, 0.3);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+}
+
+#section-13 .see-here-link:hover {
+    background: linear-gradient(135deg, var(--accent-primary), var(--yes-color));
+    color: white;
+    border-color: var(--yes-color);
+    box-shadow: 0 4px 16px rgba(255, 150, 181, 0.5), 0 0 20px rgba(255, 107, 157, 0.4);
+    transform: translateY(-3px) scale(1.05);
+}
+
+#section-13 .see-here-link:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 2px 8px rgba(255, 150, 181, 0.4);
+}
+
+/* Image Modal Styles */
+.image-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 100001;
+    animation: modalSlideIn 0.4s ease-out;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-image {
+    display: block;
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--yes-color));
+    color: white;
+    border: none;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 150, 181, 0.4);
+    z-index: 100002;
+}
+
+.modal-close:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(255, 150, 181, 0.6);
+}
+
+.modal-close:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* Modal Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95vw;
+        max-height: 85vh;
+    }
+
+    .modal-close {
+        top: -10px;
+        right: -10px;
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+
+    .see-here-link {
+        padding: 2px 6px;
+        font-size: 1.05em;
+    }
+
+    #section-13 .story-card {
+        padding-bottom: 3rem;
+    }
+
+    #section-13 .see-here-link {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        max-width: 98vw;
+        max-height: 80vh;
+    }
+
+    .modal-close {
+        width: 32px;
+        height: 32px;
+        font-size: 22px;
+    }
+
+    #section-13 .story-card {
+        padding-bottom: 2.5rem;
+    }
+
+    #section-13 .see-here-link {
+        bottom: 0.75rem;
+        right: 0.75rem;
+        padding: 0.35rem 0.7rem;
+        font-size: 0.95rem;
+    }
 }

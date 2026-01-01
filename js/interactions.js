@@ -105,6 +105,41 @@ function initInteractions() {
     // Hover-only behavior restricted to non-touch devices
   }
 
+  // ====== SAVED PHOTO MODAL FUNCTIONALITY ======
+  const seeHereLink = document.getElementById('see-saved-photo');
+  const modal = document.getElementById('saved-photo-modal');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalClose = document.getElementById('modal-close');
+
+  if (seeHereLink && modal && modalBackdrop && modalClose) {
+      // Show modal when "see here" is clicked
+      seeHereLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      });
+
+      // Hide modal when close button is clicked
+      modalClose.addEventListener('click', () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Restore scrolling
+      });
+
+      // Hide modal when backdrop is clicked
+      modalBackdrop.addEventListener('click', () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Restore scrolling
+      });
+
+      // Hide modal on Escape key press
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.classList.contains('active')) {
+              modal.classList.remove('active');
+              document.body.style.overflow = ''; // Restore scrolling
+          }
+      });
+  }
+
   window.initInteractions_done = true;
 }
 

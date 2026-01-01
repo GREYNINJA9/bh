@@ -110,6 +110,19 @@ class ScrollFloat {
         // Store trigger instance for potential cleanup
         this.element._scrollFloatTrigger = gsap.getProperty(charElements[0], 'scrollTrigger');
         
+        // Verify animation was created successfully
+        if (charElements.length > 0) {
+            const firstCharTrigger = window.ScrollTrigger.getAll().find(t => 
+                t.trigger === this.element || Array.from(charElements).includes(t.trigger)
+            );
+            
+            if (firstCharTrigger) {
+                console.log(`ScrollFloat: Animation verified for "${this.originalText.substring(0, 30)}..."`);
+            } else {
+                console.warn(`ScrollFloat: Animation may not have been created for "${this.originalText.substring(0, 30)}..."`);
+            }
+        }
+        
         console.log('ScrollFloat: Animation created with', charElements.length, 'characters');
     }
 }

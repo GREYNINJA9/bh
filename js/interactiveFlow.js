@@ -41,11 +41,13 @@
       this.yesBtn = document.querySelector('.yes-btn');
       this.noBtn = document.querySelector('.no-btn');
       this.finalCard = document.querySelector('#final-section .story-card');
+      this.formspreeForm = document.querySelector('#formspree-form');
 
       console.log('InteractiveFlow mounting...', {
         yesBtn: !!this.yesBtn,
         noBtn: !!this.noBtn,
-        finalCard: !!this.finalCard
+        finalCard: !!this.finalCard,
+        formspreeForm: !!this.formspreeForm
       });
 
       if (!this.yesBtn || !this.noBtn) {
@@ -90,21 +92,50 @@
     }
 
     _bind() {
-      this._boundHandlers.yes = this.onYesClick.bind(this);
-      this._boundHandlers.no = this.onNoClick.bind(this);
-      this.yesBtn.addEventListener('click', this._boundHandlers.yes);
-      this.noBtn.addEventListener('click', this._boundHandlers.no);
-      // Touch support
-      this.yesBtn.addEventListener('touchstart', (e) => { e.preventDefault(); this.onYesClick(e); }, { passive: false });
-      this.noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); this.onNoClick(e); }, { passive: false });
+      this._boundHandlers = {
+        no: this.onNoClick.bind(this),
+        formSubmit: this.onFormSubmit.bind(this)
+      };
 
-      // keydown
-      this.yesBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter') this.onYesClick(e); });
-      this.noBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter') this.onNoClick(e); });
+      // Bind form submit handler - YES button submission routes through this
+      if (this.formspreeForm) {
+        this.formspreeForm.addEventListener('submit', this._boundHandlers.formSubmit);
+      }
+
+      // NO button listeners
+      this.noBtn.addEventListener('click', this._boundHandlers.no);
+      this.noBtn.addEventListener('touchstart', this._boundHandlers.no);
+
+      // Keyboard accessibility for NO button
+      this.noBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') this._boundHandlers.no();
+      });
 
       // Force cursor
       this.yesBtn.style.cursor = 'pointer';
       this.noBtn.style.cursor = 'pointer';
+    }
+
+    onFormSubmit(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this.formspreeForm);
+
+      fetch(this.formspreeForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(response => {
+          // Silent success - trigger celebration
+          this.onYesClick();
+        })
+        .catch(error => {
+          // Silent error handling - still trigger celebration
+          this.onYesClick();
+        });
     }
 
     onYesClick() {
@@ -112,7 +143,8 @@
       if (this.noBtn) {
         this.noBtn.style.display = 'none';
       }
-      this.createConfetti();
+      // Use configured emoji burst count
+      this.createConfetti(this.config.emojiBurstCount);
       // Increase music volume if available
       try { if (window.audioController && window.audioController.setVolume) window.audioController.setVolume(80); } catch (e) { }
       // Show celebrating mascots and final message
@@ -123,13 +155,14 @@
       this.noClicks++;
       const messages = [
         "Please think again 🥺",
-        "Ek baar phir soch lo!! 😣",
-        "Kitna bhaav khaoge aap? Please maan jao na 🙏"
+        "Ek baar moka toh do!! 😣",
+        "Main itna bhi bura nhi hu... 😢",
+        "Kitna bhaav khaoge aap? Please maan jao na 🙏",
       ];
-      const phase = Math.min(this.noClicks, 3);
+      const phase = Math.min(this.noClicks, 4);
       this._showMessage(messages[phase - 1] || messages[2]);
 
-      if (this.noClicks <= 3) {
+      if (this.noClicks <= this.config.noButtonEscapeAttempts) {
         this.showMascot(`phase${phase}`);
       }
 
@@ -137,8 +170,8 @@
       this._evadeNoButton();
       this._adjustSizes();
 
-      if (this.noClicks >= 4) {
-        // Remove No button after 4 clicks
+      // Remove No button after configured escape attempts
+      if (this.noClicks >= this.config.noButtonEscapeAttempts) {
         if (this.noBtn) {
           this.noBtn.style.display = 'none';
         }
@@ -215,19 +248,20 @@
       if (old) old.remove();
       const el = document.createElement('div');
       el.className = 'final-message';
+      el.classList.add(`final-message-click-${this.noClicks}`);
       el.innerHTML = `<strong>${msg}</strong>`;
-      el.style.opacity = '0';
-      el.style.transition = 'opacity 0.6s ease';
+      el.classList.add('message-hidden');
       this.finalCard.appendChild(el);
-      requestAnimationFrame(() => el.style.opacity = '1');
+      requestAnimationFrame(() => el.classList.remove('message-hidden'));
       setTimeout(() => { if (el && el.parentNode) el.parentNode.removeChild(el); }, 4500);
     }
 
-    createConfetti() {
-      const count = 50;
+    createConfetti(count) {
+      // Use parameter or fall back to config value
+      const burstCount = count !== undefined ? count : this.config.emojiBurstCount;
       const container = document.body;
       const emojis = ['🎉', '✨', '💕', '🌟', '🎊', '🥳'];
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < burstCount; i++) {
         const span = document.createElement('div');
         span.className = 'confetti-particle';
         span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
@@ -281,7 +315,7 @@
         finalH1.style.color = "#e91e63";
         finalH1.style.fontSize = "3rem";
         finalH1.style.textShadow = "2px 2px 4px rgba(255, 105, 180, 0.3)";
-        
+
         new DecryptedText(finalH1, {
           animateOn: 'none', // Don't auto-trigger on view to prevent re-animation on scroll
           speed: 1,
@@ -289,14 +323,14 @@
           sequential: true,
           characters: "💖🎉✨😍"
         });
-        
+
         // Manually trigger the animation once
         setTimeout(() => {
           const decryptedTextInstance = finalH1._decryptedTextInstance;
           if (decryptedTextInstance && !decryptedTextInstance.hasAnimated) {
             decryptedTextInstance.isHovering = true;
             decryptedTextInstance.startScramble();
-            
+
             // Lock visual container styles after animation starts
             if (decryptedTextInstance.visualContainer) {
               decryptedTextInstance.visualContainer.style.fontFamily = "'Great Vibes', cursive";
