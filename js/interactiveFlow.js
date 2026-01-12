@@ -170,8 +170,8 @@
       this._evadeNoButton();
       this._adjustSizes();
 
-      // Remove No button after configured escape attempts
-      if (this.noClicks >= this.config.noButtonEscapeAttempts) {
+      // Remove No button after configured escape attempts + 1 (to show all 4 messages first)
+      if (this.noClicks > this.config.noButtonEscapeAttempts) {
         if (this.noBtn) {
           this.noBtn.style.display = 'none';
         }

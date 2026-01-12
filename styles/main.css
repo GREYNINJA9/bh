@@ -173,10 +173,6 @@
     --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body.hero-locked {
-    /* overflow: hidden removed to allow scrolling while content remains protected */
-}
-
 body.hero-locked #main-content {
     opacity: 0;
     pointer-events: none;
@@ -1692,18 +1688,17 @@ p {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 0 1rem;
+        padding: 0 0.5rem;
         margin-top: 1.5rem;
     }
 
     .photo-circle {
-        width: min(280px, 80vw);
-        height: min(280px, 80vw);
-        max-width: 280px;
-        max-height: 280px;
+        width: clamp(200px, calc(100vw - 5rem), 280px);
+        height: clamp(200px, calc(100vw - 5rem), 280px);
         margin: 0 auto 1.5rem;
         border-width: 4px;
         box-shadow: 0 8px 30px rgba(255, 150, 181, 0.25);
+        box-sizing: border-box;
     }
 
     .celebration-mascots {
@@ -1732,16 +1727,15 @@ p {
 /* Extra-small screens (≤480px) - photo circle overrides */
 @media (max-width: 480px) {
     .photo-circle {
-        width: min(240px, 75vw);
-        height: min(240px, 75vw);
-        max-width: 240px;
-        max-height: 240px;
+        width: clamp(180px, calc(100vw - 4rem), 240px);
+        height: clamp(180px, calc(100vw - 4rem), 240px);
         border-width: 3px;
         font-size: 2rem;
+        box-sizing: border-box;
     }
 
     .photo-placeholder {
-        padding: 0 0.75rem;
+        padding: 0 0.5rem;
         margin-top: 1rem;
     }
 
@@ -1777,11 +1771,17 @@ p {
     max-width: 100%;
     overflow: hidden;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .photo-circle {
     width: 300px;
     height: 300px;
+    max-width: calc(100% - 10px);
+    max-height: calc(100% - 10px);
     border-radius: 50%;
     background: var(--card-bg);
     border: 5px solid var(--accent-primary);
@@ -1792,6 +1792,7 @@ p {
     font-size: 3rem;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(255, 150, 181, 0.3);
+    box-sizing: border-box;
 }
 
 .profile-image {
@@ -1799,6 +1800,9 @@ p {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
 
 .confetti-particle {
