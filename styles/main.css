@@ -173,6 +173,10 @@
     --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+body.hero-locked {
+    overflow: hidden;
+}
+
 body.hero-locked #main-content {
     opacity: 0;
     pointer-events: none;
