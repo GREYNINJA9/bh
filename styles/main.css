@@ -355,7 +355,7 @@ body:not(.hero-locked) .story-section {
 
 .story-card {
     /* Removed will-change and backface-visibility for better performance */
-}
+}  
 
 .final-section {
     position: relative;
@@ -828,9 +828,14 @@ p {
 /* ScrollFloat character animations */
 .scroll-float {
     display: inline-block;
-    word-break: break-word;
+    white-space: normal;
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+.scroll-float .word-wrapper {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .scroll-float .char {

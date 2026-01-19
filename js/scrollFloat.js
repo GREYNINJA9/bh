@@ -41,25 +41,45 @@ class ScrollFloat {
 
         gsap.registerPlugin(window.ScrollTrigger);
 
-        // Split text into characters
-        const chars = this.originalText.split('').map(char => {
-            return char === ' ' ? '&nbsp;' : char;
-        });
+        // Split text into words first, then characters within each word
+        const words = this.originalText.split(/\s+/);
+        let charCount = 0;
 
-        console.log('ScrollFloat: Splitting', this.originalText, 'into', chars.length, 'characters');
+        console.log('ScrollFloat: Splitting', this.originalText, 'into', words.length, 'words');
 
         this.element.innerHTML = '';
         this.element.classList.add('scroll-float');
 
-        // Wrap each character in a span
-        chars.forEach(char => {
-            const span = document.createElement('span');
-            span.innerHTML = char;
-            span.className = 'char';
-            span.style.display = 'inline-block';
-            // Removed will-change for performance optimization
-            this.element.appendChild(span);
+        // Process each word
+        words.forEach((word, wordIndex) => {
+            // Create word wrapper with white-space: nowrap to keep word together
+            const wordWrapper = document.createElement('span');
+            wordWrapper.className = 'word-wrapper';
+            wordWrapper.style.display = 'inline-block';
+            wordWrapper.style.whiteSpace = 'nowrap';
+
+            // Split word into characters
+            const chars = word.split('');
+            chars.forEach(char => {
+                const span = document.createElement('span');
+                span.innerHTML = char;
+                span.className = 'char';
+                span.style.display = 'inline-block';
+                // Removed will-change for performance optimization
+                wordWrapper.appendChild(span);
+                charCount++;
+            });
+
+            this.element.appendChild(wordWrapper);
+
+            // Add breakable space between words (except after last word)
+            if (wordIndex < words.length - 1) {
+                const spaceNode = document.createTextNode(' ');
+                this.element.appendChild(spaceNode);
+            }
         });
+
+        console.log('ScrollFloat: Created', charCount, 'character spans in', words.length, 'word wrappers');
 
         const charElements = this.element.querySelectorAll('.char');
         console.log('ScrollFloat: Created', charElements.length, 'character spans');
